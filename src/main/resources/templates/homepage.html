@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>age</th>
+            <th>gender</th>
+            <th>buttom</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getGender()}"></td>
+            <td>
+                <form method="get" th:action="@{'/user/' + ${user.getId()}}">
+                    <button type="submit">Go to info</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

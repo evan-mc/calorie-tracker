@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${specificUser.getName() + ' info'}">placeholder title</title>
+</head>
+<body>
+    <h1 th:text="'Info for ' + ${specificUser.getName()}"></h1>
+    <table>
+        <tr>
+            <th>
+                age
+            </th>
+            <th>
+                weight
+            </th>
+            <th>
+                height
+            </th>
+            <th>
+                gender
+            </th>
+            <th>
+                activity level
+            </th>
+        </tr>
+        <tr>
+            <td th:text="${specificUser.getAge()}"></td>
+            <td th:text="${specificUser.getWeight()}"></td>
+            <td th:text="${specificUser.getHeight()}"></td>
+            <td th:text="${specificUser.getGender()}"></td>
+            <td th:text="${specificUser.getActivityLevel()}"></td>
+        </tr>
+    </table>
+</body>
+</html>
