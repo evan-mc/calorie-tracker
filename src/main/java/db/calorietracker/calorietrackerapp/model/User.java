@@ -1,5 +1,7 @@
 package db.calorietracker.calorietrackerapp.model;
 
+import org.springframework.util.MultiValueMap;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,6 +24,21 @@ public class User
     char gender;
     @Column(name="activity_level")
     double activityLevel;
+
+    public User()
+    {
+
+    }
+
+    public User(MultiValueMap<String, String> attributes)
+    {
+        name = attributes.getFirst("name");
+        age = Integer.parseInt(attributes.getFirst("age"));
+        weight = Integer.parseInt(attributes.getFirst("weight"));
+        height = Integer.parseInt(attributes.getFirst("height"));
+        gender = attributes.getFirst("gender").toCharArray()[0];
+        activityLevel = Double.parseDouble(attributes.getFirst("activityLevel"));
+    }
 
     public int getId()
     {

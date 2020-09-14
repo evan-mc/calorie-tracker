@@ -10,7 +10,8 @@
             <th>name</th>
             <th>age</th>
             <th>gender</th>
-            <th>buttom</th>
+            <th>info</th>
+            <th>delete</th>
         </tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.getName()}"></td>
@@ -21,7 +22,46 @@
                     <button type="submit">Go to info</button>
                 </form>
             </td>
+            <td>
+                <form method="post" th:action="@{'/user/' + ${user.getId()} + '/delete'}">
+                    <button type="submit">Delete user</button>
+                </form>
+            </td>
         </tr>
     </table>
+
+    <form method="post" action="/">
+        <label for="name">First name:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="age">Age:</label><br>
+        <input type="text" id="age" name="age"><br>
+
+        <label for="weight">Weight (in lbs):</label><br>
+        <input type="text" id="weight" name="weight"><br>
+
+        <label for="height">Height (in inches):</label><br>
+        <input type="text" id="height" name="height"><br>
+
+        <label for="gender">Gender:</label><br>
+        <select id="gender" name="gender">
+            <option value="m">male</option>
+            <option value="f">female</option>
+        </select>
+        <br>
+
+        <label for="activityLevel">Activity Level:</label><br>
+        <select id="activityLevel" name="activityLevel">
+            <option value="1.2">sedentary</option>
+            <option value="1.375">lightly active</option>
+            <option value="1.55">moderately active</option>
+            <option value="1.725">very active</option>
+            <option value="1.9">extremely active</option>
+        </select>
+        <br>
+        <br>
+
+        <button type="submit">Add user</button>
+    </form>
 </body>
 </html>

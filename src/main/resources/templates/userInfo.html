@@ -32,5 +32,16 @@
             <td th:text="${specificUser.getActivityLevel()}"></td>
         </tr>
     </table>
+
+    <h2>caloric needs</h2>
+
+    <p th:text="'based on the above information, to maintain
+    your current body weight, you need to eat ' + ${#numbers.formatDecimal(dailyCalories, 2, 0)} + ' calories'"></p>
+
+    <p th:text="'to lose 1 lb a week, you need to eat about ' +
+    (${#numbers.formatDecimal(dailyCalories, 2, 0)} - 500) + ' calories'"></p>
+
+    <p th:text="'to gain 1 lb a week, you need to eat about ' +
+    (${#numbers.formatDecimal(dailyCalories, 2, 0)} + 500) + ' calories'"></p>
 </body>
 </html>
