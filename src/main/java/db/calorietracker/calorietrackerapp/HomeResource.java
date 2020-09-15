@@ -2,17 +2,14 @@ package db.calorietracker.calorietrackerapp;
 
 import db.calorietracker.calorietrackerapp.model.User;
 import db.calorietracker.calorietrackerapp.repository.UserRepository;
-import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller

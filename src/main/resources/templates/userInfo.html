@@ -43,5 +43,47 @@
 
     <p th:text="'to gain 1 lb a week, you need to eat about ' +
     (${#numbers.formatDecimal(dailyCalories, 2, 0)} + 500) + ' calories'"></p>
+
+    <h2>calorie data</h2>
+    <table>
+        <tr>
+            <th>
+                food name
+            </th>
+            <th>
+                calorie amount
+            </th>
+            <th>
+                edit item
+            </th>
+            <th>
+                remove item
+            </th>
+        </tr>
+        <tr th:each="item : ${userCalorieList}">
+            <td th:text="${item.getItemName()}"></td>
+            <td th:text="${item.getCalorieCount()}"></td>
+            <td>
+                <form method="get" th:action="@{'/user/' + ${specificUser.getId()} + '/EditItem/' + ${item.getId()}}">
+                    <button type="submit" th:text="'edit ' + ${item.getItemName()}"></button>
+                </form>
+            </td>
+            <td>
+                <form method="post" th:action="@{'/user/' + ${specificUser.getId()} + '/RemoveItem/' + ${item.getId()}}">
+                    <button type="submit" th:text="'delete ' + ${item.getItemName()}"></button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <form method="post" th:action="@{'/user/' + ${specificUser.getId()} + '/AddItem'}">
+        <label for="name">Food name:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="calories">Amount of calories:</label><br>
+        <input type="text" id="calories" name="calories"><br><br>
+
+        <button type="submit">add item</button>
+    </form>
 </body>
 </html>

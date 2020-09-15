@@ -3,6 +3,7 @@ package db.calorietracker.calorietrackerapp.model;
 import org.springframework.util.MultiValueMap;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
@@ -24,6 +25,9 @@ public class User
     char gender;
     @Column(name="activity_level")
     double activityLevel;
+
+    @OneToMany(mappedBy="user")
+    private Set<Calories> calories;
 
     public User()
     {

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Edit ' + ${calorieItem.getItemName()}"></title>
+</head>
+<body>
+    <h4>Food name</h4>
+    <p th:text="${calorieItem.getItemName()}"></p><br>
+
+    <h4>Calorie amount</h4>
+    <p th:text="${calorieItem.getCalorieCount()}"></p><br>
+
+    <form method="post" th:action="@{'/user/' + ${specificUser.getId()} + '/EditItem/' + ${calorieItem.getId()}}">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${calorieItem.getItemName()}"><br><br>
+
+        <label for="calories">Calories:</label><br>
+        <input type="text" id="calories" name="calories" th:value="${calorieItem.getCalorieCount()}"><br><br>
+
+        <button type="submit">update item</button>
+    </form>
+</body>
+</html>
