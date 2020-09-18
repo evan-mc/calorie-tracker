@@ -34,8 +34,21 @@ public class User
 
     }
 
+    //for creating new users on the webpage
     public User(MultiValueMap<String, String> attributes)
     {
+        name = attributes.getFirst("name");
+        age = Integer.parseInt(attributes.getFirst("age"));
+        weight = Integer.parseInt(attributes.getFirst("weight"));
+        height = Integer.parseInt(attributes.getFirst("height"));
+        gender = attributes.getFirst("gender").toCharArray()[0];
+        activityLevel = Double.parseDouble(attributes.getFirst("activityLevel"));
+    }
+
+    //for updating a specific users info
+    public User(MultiValueMap<String, String> attributes, int id)
+    {
+        this.id = id;
         name = attributes.getFirst("name");
         age = Integer.parseInt(attributes.getFirst("age"));
         weight = Integer.parseInt(attributes.getFirst("weight"));

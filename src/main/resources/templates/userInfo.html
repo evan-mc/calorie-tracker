@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title th:text="${specificUser.getName() + ' info'}">placeholder title</title>
@@ -23,6 +23,9 @@
             <th>
                 activity level
             </th>
+            <th>
+                edit info
+            </th>
         </tr>
         <tr>
             <td th:text="${specificUser.getAge()}"></td>
@@ -30,19 +33,35 @@
             <td th:text="${specificUser.getHeight()}"></td>
             <td th:text="${specificUser.getGender()}"></td>
             <td th:text="${specificUser.getActivityLevel()}"></td>
+            <td>
+                <form method="get" th:action="@{'/user/' + ${specificUser.getId()} + '/EditUser'}">
+                    <button type="submit">Edit User Info</button>
+                </form>
+            </td>
         </tr>
     </table>
 
     <h2>caloric needs</h2>
 
-    <p th:text="'based on the above information, to maintain
-    your current body weight, you need to eat ' + ${#numbers.formatDecimal(dailyCalories, 2, 0)} + ' calories'"></p>
+    <p>Select the date to display calorie data for</p>
+    <form method="get" th:action="@{#}">
+        <label for="date">Date:</label>
+        <input type=date id="date" name="date">
+        <button type="submit">get data</button>
+    </form>
+
+    <p th:text="'based on the above information, you can eat up to
+    ' + ${#numbers.formatDecimal(dailyCalories, 2, 0)} + ' calories per day'"></p>
 
     <p th:text="'to lose 1 lb a week, you need to eat about ' +
-    (${#numbers.formatDecimal(dailyCalories, 2, 0)} - 500) + ' calories'"></p>
+    (${#numbers.formatDecimal(dailyCalories, 2, 0)} - 500) + ' calories per day'"></p>
 
     <p th:text="'to gain 1 lb a week, you need to eat about ' +
-    (${#numbers.formatDecimal(dailyCalories, 2, 0)} + 500) + ' calories'"></p>
+    (${#numbers.formatDecimal(dailyCalories, 2, 0)} + 500) + ' calories per day'"></p>
+
+    <p th:text="'based on the table below, you have eaten ' +  ${calorieCount} + ' calories today'"></p>
+
+    <p th:text="'you can eat ' + ${caloriesLeft} + ' more calories today'"></p>
 
     <h2>calorie data</h2>
     <table>

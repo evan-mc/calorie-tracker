@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Edit' + ${specificUser.getName()} + 'info'"></title>
+</head>
+<body>
+    <form method="post" th:action="@{'/user/' + ${specificUser.getId()} + '/EditUser/'}">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name" th:value="${specificUser.getName()}"><br><br>
+
+        <label for="age">Age</label><br>
+        <input type="text" id="age" name="age" th:value="${specificUser.getAge()}"><br><br>
+
+        <label for="weight">Weight</label><br>
+        <input type="text" id="weight" name="weight" th:value="${specificUser.getWeight()}"><br><br>
+
+        <label for="height">Height</label><br>
+        <input type="text" id="height" name="height" th:value="${specificUser.getHeight()}"><br><br>
+
+        <label for="gender">Gender</label><br>
+        <input type="text" id="gender" name="gender" th:value="${specificUser.getGender()}"><br><br>
+
+        <label for="activityLevel">Activity Level:</label><br>
+        <select id="activityLevel" name="activityLevel">
+            <option value="1.2">sedentary</option>
+            <option value="1.375">lightly active</option>
+            <option value="1.55">moderately active</option>
+            <option value="1.725">very active</option>
+            <option value="1.9">extremely active</option>
+        </select>
+        <br>
+        <br>
+
+        <button type="submit">update user</button>
+    </form>
+</body>
+</html>

@@ -4,6 +4,8 @@ import org.springframework.util.MultiValueMap;
 
 import javax.persistence.*;
 
+import java.sql.Date;
+
 @Entity
 @Table(name="calories")
 public class Calories
@@ -19,6 +21,8 @@ public class Calories
     @ManyToOne
     @JoinColumn(name="person_id")
     private User user;
+    @Column(name="date")
+    Date date;
 
     public Calories()
     {
@@ -32,20 +36,22 @@ public class Calories
         this.user = user;
     }
 
-    public Calories(MultiValueMap<String, String> params, User user)
+    public Calories(MultiValueMap<String, String> params, User user, Date date)
     {
         this.itemName = params.getFirst("name");
         this.calorieCount = Integer.parseInt(params.getFirst("calories"));
         this.user = user;
+        this.date = date;
     }
 
     //this should only be called when calling an update on a row in the calories database
-    public Calories(int id, MultiValueMap<String, String> params, User user)
+    public Calories(int id, MultiValueMap<String, String> params, User user, Date date)
     {
         this.id = id;
         this.itemName = params.getFirst("name");
         this.calorieCount = Integer.parseInt(params.getFirst("calories"));
         this.user = user;
+        this.date = date;
 
     }
 
@@ -87,5 +93,15 @@ public class Calories
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    public Date getDate()
+    {
+        return date;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
     }
 }

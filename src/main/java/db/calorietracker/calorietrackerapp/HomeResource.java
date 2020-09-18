@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -21,7 +22,7 @@ public class HomeResource
     private final static Logger LOGGER = Logger.getLogger(HomeResource.class.getName());
 
     @GetMapping("/")
-    public String getAllUsers(Model model)
+    public String getAllUsers(Model model) throws ParseException
     {
         List<User> users = new ArrayList<>();
         userRepository.findAll().forEach(users::add);
@@ -36,7 +37,7 @@ public class HomeResource
         User user = new User(params);
         userRepository.save(user);
 
-        return getAllUsers(model);
+        return "redirect:http://localhost:8080";
     }
 
     //should be a delete mapping, but its all i can do because delete is not avaialable in form method
@@ -47,6 +48,6 @@ public class HomeResource
         LOGGER.info("deleting user with id " + id);
         userRepository.deleteById(id);
 
-        return getAllUsers(model);
+        return "redirect:http://localhost:8080";
     }
 }
