@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${specificUser.getName() + ' info'}">placeholder title</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
     <h1 th:text="'Info for ' + ${specificUser.getName()}"></h1>

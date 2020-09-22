@@ -35,8 +35,7 @@ public class UserController
     @GetMapping("/user/{id}")
     public String getUserInfo(@PathVariable int id, Model model, @RequestParam("date") Optional<String> dateParam) throws ParseException
     {
-        String date;
-        if(dateParam.isPresent())
+        if(dateParam.isPresent() && !dateParam.get().isEmpty())
         {
             lastDateAccessed = dateParam.get();
         }
@@ -55,7 +54,7 @@ public class UserController
         Calories calories = new Calories(params, userRepository.findById(id).get(), sqlDate);
         caloriesRepository.save(calories);
 
-        return "redirect:/user/{id}";
+        return returnUrlForItem();
     }
 
     @PostMapping("/user/{id}/RemoveItem/{itemId}")
@@ -63,7 +62,7 @@ public class UserController
     {
         caloriesRepository.deleteById(itemId);
 
-        return "redirect:/user/{id}";
+        return returnUrlForItem();
     }
 
     @GetMapping("/user/{id}/EditItem/{itemId}")
@@ -90,7 +89,7 @@ public class UserController
         Calories calories = new Calories(itemId, params, userRepository.findById(id).get(), date);
         caloriesRepository.save(calories);
 
-        return "redirect:/user/{id}";
+        return returnUrlForItem();
     }
 
     @GetMapping("/user/{id}/EditUser")
@@ -177,5 +176,19 @@ public class UserController
         }
 
         return new java.sql.Date(myDate.getTime());
+    }
+
+    private String returnUrlForItem()
+    {
+        String baseUrl = "redirect:/user/{id}";
+
+        if(lastDateAccessed.equals("today"))
+        {
+            return baseUrl;
+        }
+        else
+        {
+            return baseUrl + "?date=" + lastDateAccessed;
+        }
     }
 }

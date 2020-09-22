@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Edit' + ${specificUser.getName()} + 'info'"></title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
     <form method="post" th:action="@{'/user/' + ${specificUser.getId()} + '/EditUser/'}">
